@@ -5,7 +5,7 @@
 
 // ------------------------------------------------------------------------------------------ //
 
-int intInput(char prompt[]){
+int intInput(char prompt[32]){
 
     int input;
     printf(prompt);
@@ -27,12 +27,12 @@ void getString(int base, char *str){
 
 // ------------------------------------------------------------------------------------------ //
 
-int toBase10(char initialNumber[], int base){
-
+int toBase10(char initialNumber[16], int base){
+    printf("base: %d\n", base);
     int base10Number = 0;
     for (int i = 0; i < strlen(initialNumber); i++){
         if (isalpha(initialNumber[i])){
-            base10Number += pow(base, i) * (initialNumber[i] - 0);
+            base10Number += pow(base, i) * (initialNumber[i] - 55);
         } else{
             base10Number += pow(base, i) * (initialNumber[i] - 48);
         }
