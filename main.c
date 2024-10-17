@@ -18,7 +18,6 @@ int intInput(char prompt[32]){
 
 void getString(int base, char *str){
     char newStr[16];
-    //gets(newStr);
     printf("Enter a base %d number: ", base);
     scanf("%s", &newStr);
     strcpy(str, newStr);
@@ -28,7 +27,7 @@ void getString(int base, char *str){
 // ------------------------------------------------------------------------------------------ //
 
 int toBase10(char initialNumber[16], int base){
-    printf("base: %d\n", base);
+
     int base10Number = 0;
     for (int i = 0; i < strlen(initialNumber); i++){
         if (isalpha(initialNumber[i])){
