@@ -26,7 +26,7 @@ const char* stringInput(char prompt[]){
 }
 
 // ------------------------------------------------------------------------------------------ //
-/*
+
 const char* initialNumberInput(int base){
 
     char input[] = "";
@@ -35,7 +35,7 @@ const char* initialNumberInput(int base){
     return input;
 
 }
-*/
+
 // ------------------------------------------------------------------------------------------ //
 
 int toBase10(char initialNumber[], int base){
@@ -57,8 +57,9 @@ int toBase10(char initialNumber[], int base){
 int main(){
 
     int base = intInput("Type the base of the initial number: ");
-    //const char* initialNumber = initialNumberInput(base);
-    int base10Number = toBase10("AA", base);
+    const char* initialNumber = initialNumberInput(base);
+    printf("%s\n", *initialNumber);
+    int base10Number = toBase10(*initialNumber, base);
     printf("%d\n", base10Number);
 
     return 0;
