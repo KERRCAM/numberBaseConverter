@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include <ctype.h>
+#include "main.h"
 
 // ------------------------------------------------------------------------------------------ //
 
@@ -29,13 +26,15 @@ void getString(int base, char *str){
 int toBase10(char initialNumber[16], int base){
 
     int base10Number = 0;
-    for (int i = 0; i < strlen(initialNumber); i++){
+    int digits = strlen(initialNumber);
+    int j = 0;
+    for (int i = digits - 1; i > -1; i--){
         if (isalpha(initialNumber[i])){
-            base10Number += pow(base, i) * (initialNumber[i] - 55);
+            base10Number += pow(base, j) * (initialNumber[i] - 55);
         } else{
-            base10Number += pow(base, i) * (initialNumber[i] - 48);
+            base10Number += pow(base, j) * (initialNumber[i] - 48);
         }
-        
+        j++;
     }
     return base10Number;
 
