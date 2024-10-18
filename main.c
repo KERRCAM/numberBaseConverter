@@ -1,6 +1,6 @@
 #include "main.h"
-#include <stdbool.h>
-// ------------------------------------------------------------------------------------------ //
+
+// ------------------------------------------------------------------------ //
 
 int intInput(char prompt[32]){
 
@@ -11,7 +11,7 @@ int intInput(char prompt[32]){
 
 }
 
-// ------------------------------------------------------------------------------------------ //
+// ------------------------------------------------------------------------ //
 
 void getString(int base, char *str){
     char newStr[16];
@@ -20,8 +20,16 @@ void getString(int base, char *str){
     strcpy(str, newStr);
 }
 
+// ------------------------------------------------------------------------ //
 
-// ------------------------------------------------------------------------------------------ //
+double logx(int number, int base){
+
+    double loggedNumber = log(number) / log(base);
+    return loggedNumber;
+
+}
+
+// ------------------------------------------------------------------------ //
 
 int toBase10(char initialNumber[16], int base){
 
@@ -42,35 +50,36 @@ int toBase10(char initialNumber[16], int base){
 
 }
 
-// ------------------------------------------------------------------------------------------ //
+// ------------------------------------------------------------------------ //
 
-void base10ToBinary(char *str){
-
+void base10ToBinary(char *str, int base10Number){
+    int size = (int) (ceil(ceil(logx(base10Number, 2)) / 4) * 4);
+    char binaryNumber[size];
+    for (int i = 0; i < size; i++){
+        binaryNumber[i] = '0';
+    }
+    binaryNumber[size] = '\0';
+    while (base10Number > 0){
+        int pos = floor(logx(base10Number, 2));
+        binaryNumber[size - pos - 1] = '1';
+        base10Number -= pow(2, pos);
+    }
+    strcpy(str, binaryNumber);
 }
 
-// ------------------------------------------------------------------------------------------ //
+// ------------------------------------------------------------------------ //
 
-void base10ToOctal(char *str){
+void base10ToOctal(char *str, int base10Number){
     
 }
 
-// ------------------------------------------------------------------------------------------ //
+// ------------------------------------------------------------------------ //
 
-void base10ToHex(char *str){
+void base10ToHex(char *str, int base10Number){
     
 }
 
-// ------------------------------------------------------------------------------------------ //
-
-double logx(int number, int base){
-
-    double loggedNumber = log(number) / log(base);
-    
-    return loggedNumber;
-
-}
-
-// ------------------------------------------------------------------------------------------ //
+// ------------------------------------------------------------------------ //
 
 int main(){
 
@@ -79,8 +88,11 @@ int main(){
     getString(base, initialNumber);
     int base10Number = toBase10(initialNumber, base);
     printf("%d\n", base10Number);
+    char binaryNumber[16] = "";
+    base10ToBinary(binaryNumber, base10Number);
+    printf("%s\n", binaryNumber);
 
     return 0;
 }
 
-// ------------------------------------------------------------------------------------------ //
+// ------------------------------------------------------------------------ //
