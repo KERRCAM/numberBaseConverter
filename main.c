@@ -86,7 +86,7 @@ int main(){
     int initialBase = intInput("Type the base of the initial number: ");
     char initialNumber[16] = "";
     getString(initialBase, initialNumber);
-    int translatedBase = intInput("Type the base of the initial number: ");
+    int translatedBase = intInput("Type the base you want to transalte to: ");
     int base10Number = toBase10(initialNumber, initialBase);
     char translatedNumber[16] = "";
     switch (translatedBase){
