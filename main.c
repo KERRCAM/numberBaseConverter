@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdbool.h>
 // ------------------------------------------------------------------------------------------ //
 
 int intInput(char prompt[32]){
@@ -29,10 +29,12 @@ int toBase10(char initialNumber[16], int base){
     int digits = strlen(initialNumber);
     int j = 0;
     for (int i = digits - 1; i > -1; i--){
-        if (isalpha(initialNumber[i])){
+        if (initialNumber[i] >= 'A' && initialNumber[i] <= 'F'){
             base10Number += pow(base, j) * (initialNumber[i] - 55);
-        } else{
+        } else if (isdigit(initialNumber[i])){
             base10Number += pow(base, j) * (initialNumber[i] - 48);
+        } else{
+            //invalid char
         }
         j++;
     }
@@ -56,6 +58,16 @@ void base10ToOctal(char *str){
 
 void base10ToHex(char *str){
     
+}
+
+// ------------------------------------------------------------------------------------------ //
+
+double logx(int number, int base){
+
+    double loggedNumber = log(number) / log(base);
+    
+    return loggedNumber;
+
 }
 
 // ------------------------------------------------------------------------------------------ //
