@@ -10,10 +10,10 @@ const char* stringInput(char prompt[]);
 
 int toBase10(char initialNumber[], int base);
 
-void base10ToBinary(char *str, int base10Number);
+void base10ToBinary(char *str, int denaryNumber);
 
-void base10ToOctal(char *str, int base10Number);
+void base10ToOctal(char *str, int denaryNumber);
 
-void base10ToHex(char *str, int base10Number);
+void base10ToHex(char *str, int denaryNumber);
 
 int main();
