@@ -83,14 +83,27 @@ void base10ToHex(char *str, int base10Number){
 
 int main(){
 
-    int base = intInput("Type the base of the initial number: ");
+    int initialBase = intInput("Type the base of the initial number: ");
     char initialNumber[16] = "";
-    getString(base, initialNumber);
-    int base10Number = toBase10(initialNumber, base);
-    printf("%d\n", base10Number);
-    char binaryNumber[16] = "";
-    base10ToBinary(binaryNumber, base10Number);
-    printf("%s\n", binaryNumber);
+    getString(initialBase, initialNumber);
+    int translatedBase = intInput("Type the base of the initial number: ");
+    int base10Number = toBase10(initialNumber, initialBase);
+    char translatedNumber[16] = "";
+    switch (translatedBase){
+        case 2:
+            base10ToBinary(translatedNumber, base10Number);
+            break;
+        case 8:
+            base10ToOctal(translatedNumber, base10Number);
+            break;
+        case 10:
+            sprintf(translatedNumber, "%d", base10Number);
+            break;
+        case 16:
+            base10ToHex(translatedNumber, base10Number);
+            break;
+    }
+    printf("%s\n", translatedNumber);
 
     return 0;
 }
