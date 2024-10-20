@@ -75,7 +75,7 @@ void denaryToOctal(char *str, int denaryumber){
 
 // ------------------------------------------------------------------------ //
 
-void base10ToHex(char *str, int denaryNumber){
+void denaryToHex(char *str, int denaryNumber){
     int size = (int) ceil(logx(denaryNumber, 16));
     char hexNumber[size];
     for (int i = 0; i < size; i++){
@@ -84,12 +84,19 @@ void base10ToHex(char *str, int denaryNumber){
     hexNumber[size] = '\0';
     while (denaryNumber > 0){
         int pos = floor(logx(denaryNumber, 16));
-        char currChar = floor(denaryNumber / 16);
-        if (currChar > 10){
-            currChar += 55;
+        printf("pos: %d\n", pos);
+        printf("test: %f\n", pow(16, pos));
+        int currDigit = floor(denaryNumber / pow(16, pos));
+        char currChar;
+        if (currDigit > 9){
+            currChar = 55 + currDigit;
+        } else{
+            currChar = currDigit + 48;
         }
-        hexNumber[size - pos - 1] = currChar;
-        denaryNumber -= pow(2, pos);
+        hexNumber[pos] = currChar;
+        denaryNumber -= currDigit;
+        printf("digit: %d\n", currDigit);
+        printf("char: %c\n", currChar);
     }
     strcpy(str, hexNumber);
 }
@@ -102,7 +109,7 @@ int main(){
     char initialNumber[16] = "";
     getString(initialBase, initialNumber);
     int translatedBase = intInput("Type the base you want to transalte to: ");
-    int denaryNumber = toBase10(initialNumber, initialBase);
+    int denaryNumber = toDenary(initialNumber, initialBase);
     char translatedNumber[16] = "";
     switch (translatedBase){
         case 2:
