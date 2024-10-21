@@ -70,7 +70,7 @@ void denaryToBinary(char *str, int denaryNumber){
 // ------------------------------------------------------------------------ //
 
 void denaryToOctal(char *str, int denaryumber){
-    
+    // should be same as hex but with base 8s and differnt char limits
 }
 
 // ------------------------------------------------------------------------ //
