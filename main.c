@@ -78,7 +78,7 @@ void denaryToOctal(char *str, int denaryNumber){
     hexNumber[size] = '\0';
     while (denaryNumber > 0){
         int pos = floor(logx(denaryNumber, 8));
-        char currDigit = floor(denaryNumber / pow(8, pos)) + 48;
+        char currDigit = floor(denaryNumber / pow(8, pos));
         char currChar = currDigit + 48;
         hexNumber[size - pos - 1] = currChar;
         denaryNumber -= currDigit * pow(8, pos);
@@ -134,8 +134,9 @@ int main(){
             denaryToHex(translatedNumber, denaryNumber);
             break;
     }
-    printf("%s\n", translatedNumber);
-
+    if (translatedBase != 10){
+        printf("%s\n", translatedNumber);
+    }
     return 0;
 }
 
