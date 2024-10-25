@@ -69,8 +69,21 @@ void denaryToBinary(char *str, int denaryNumber){
 
 // ------------------------------------------------------------------------ //
 
-void denaryToOctal(char *str, int denaryumber){
-    // should be same as hex but with base 8s and differnt char limits
+void denaryToOctal(char *str, int denaryNumber){
+    int size = (int) ceil(logx(denaryNumber, 8));
+    char hexNumber[size];
+    for (int i = 0; i < size; i++){
+        hexNumber[i] = '0';
+    }
+    hexNumber[size] = '\0';
+    while (denaryNumber > 0){
+        int pos = floor(logx(denaryNumber, 8));
+        char currDigit = floor(denaryNumber / pow(8, pos)) + 48;
+        char currChar = currDigit + 48;
+        hexNumber[size - pos - 1] = currChar;
+        denaryNumber -= currDigit * pow(8, pos);
+    }
+    strcpy(str, hexNumber);
 }
 
 // ------------------------------------------------------------------------ //
@@ -84,8 +97,6 @@ void denaryToHex(char *str, int denaryNumber){
     hexNumber[size] = '\0';
     while (denaryNumber > 0){
         int pos = floor(logx(denaryNumber, 16));
-        printf("pos: %d\n", pos);
-        printf("test: %f\n", pow(16, pos));
         int currDigit = floor(denaryNumber / pow(16, pos));
         char currChar;
         if (currDigit > 9){
@@ -93,10 +104,8 @@ void denaryToHex(char *str, int denaryNumber){
         } else{
             currChar = currDigit + 48;
         }
-        hexNumber[pos] = currChar;
-        denaryNumber -= currDigit;
-        printf("digit: %d\n", currDigit);
-        printf("char: %c\n", currChar);
+        hexNumber[size - pos - 1] = currChar;
+        denaryNumber -= currDigit * pow(16, pos);
     }
     strcpy(str, hexNumber);
 }
